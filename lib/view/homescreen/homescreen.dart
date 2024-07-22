@@ -44,8 +44,10 @@ class _HomescreenState extends State<Homescreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(color: colorconstant.primarygreen),
-                    ),
+                        border: Border.all(
+                          color: colorconstant.primarygreen,
+                        ),
+                        borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,

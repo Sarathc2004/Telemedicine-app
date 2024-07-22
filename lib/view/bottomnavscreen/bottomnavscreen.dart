@@ -31,7 +31,7 @@ class _userbottomnavscreenState extends State<Bottomnavscreen> {
               ),
             ],
             currentIndex: navcontroller.selectedindex,
-            selectedItemColor: colorconstant.primaryblack,
+            selectedItemColor: colorconstant.primarygreen,
             onTap: (value) {
               navcontroller.Onnavtap(value);
             },

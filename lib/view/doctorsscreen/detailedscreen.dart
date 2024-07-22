@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:telemedicine_app/controller/appointcontroller.dart';
+import 'package:telemedicine_app/model/appointmodel.dart';
 import 'package:telemedicine_app/utils/colorconstant/colorconstant.dart';
 
 class Detailedscreen extends StatefulWidget {
@@ -192,7 +195,6 @@ class _DetailedscreenState extends State<Detailedscreen> {
                       onDaySelected: (selectedDay, focusedDay) {
                         setState(() {
                           _selectedDay = selectedDay;
-                          _focusedDay = focusedDay;
                         });
                       },
                     ),
@@ -231,7 +233,24 @@ class _DetailedscreenState extends State<Detailedscreen> {
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  final newAppointment = Appointmodel(
+                      drname: widget.drname,
+                      specialism: widget.specialism,
+                      location: "Cherpulassery, Palakkad",
+                      about:
+                          "Dr. ${widget.drname} is a specialist in ${widget.specialism} with over 15 years of experience.",
+                      date: _selectedDay,
+                      time: _selectedTime!,
+                      image: widget.image);
+
+                  Provider.of<Appointmentcontroller>(context, listen: false)
+                      .addAppointment(newAppointment);
+
+                  print(
+                      Provider.of<Appointmentcontroller>(context, listen: false)
+                          .appointments);
+                },
                 child: Text("Make An Appointment"),
                 style: ButtonStyle(
                   backgroundColor:

@@ -60,6 +60,7 @@ class Doctorsscreen extends StatelessWidget {
                       height: 200,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: colorconstant.primarygreen),
                         color: colorconstant.primarywhite,
                       ),
                       padding: EdgeInsets.all(10),
@@ -97,7 +98,7 @@ class Doctorsscreen extends StatelessWidget {
                                     ),
                                     SizedBox(height: 10),
                                     Text(
-                                      "MBBS In Psychology",
+                                      "MBBS In $specialist",
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                       overflow: TextOverflow.ellipsis,
@@ -147,7 +148,7 @@ class Doctorsscreen extends StatelessWidget {
                                       builder: (context) => Detailedscreen(
                                         index: index + 1,
                                         drname: Specialists.doctorsname[index],
-                                        specialism: "MBBS In Psycology",
+                                        specialism: "MBBS In $specialist",
                                         image: Specialists.doctorimages[index],
                                       ),
                                     ),
