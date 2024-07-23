@@ -1,16 +1,15 @@
 import 'dart:ui';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:telemedicine_app/controller/appointcontroller.dart';
 import 'package:telemedicine_app/controller/authcontroller.dart';
 import 'package:telemedicine_app/model/appointmodel.dart';
 import 'package:telemedicine_app/utils/colorconstant/colorconstant.dart';
-import 'package:telemedicine_app/view/registerloginscreen/registerscreen.dart';
 
 class Appointments extends StatelessWidget {
   Appointments({Key? key}) : super(key: key);
   final Authmethods authmethods = Authmethods();
+  Appointmentcontroller appointmentcontroller = Appointmentcontroller();
 
   void showBottomSheet(BuildContext context, Appointmodel appointment) {
     showModalBottomSheet(
@@ -65,7 +64,6 @@ class Appointments extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 20),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -75,7 +73,7 @@ class Appointments extends StatelessWidget {
                             colorconstant.primarygreen)),
                     onPressed: () {},
                     child: Text(
-                      "Messsage",
+                      "Message",
                       style: TextStyle(color: colorconstant.primarywhite),
                     ),
                   ),
@@ -91,18 +89,6 @@ class Appointments extends StatelessWidget {
                   )
                 ],
               )
-              // Center(
-              //   child: ElevatedButton(
-              //     onPressed: () {
-              //       Navigator.pop(context);
-              //     },
-              //     child: Text("Confirm Appointment"),
-              //     style: ButtonStyle(
-              //       backgroundColor:
-              //           MaterialStateProperty.all(colorconstant.primarygreen),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         );
@@ -113,20 +99,6 @@ class Appointments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await FirebaseAuth.instance.signOut();
-          Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(
-              builder: (context) => RegisterScreen(),
-            ),
-            (route) => false,
-          );
-        },
-        child: Icon(Icons.logout),
-        backgroundColor: colorconstant.primarygreen,
-      ),
       appBar: AppBar(
         title: Text(
           'Appointments',
@@ -137,48 +109,52 @@ class Appointments extends StatelessWidget {
       body: Center(
         child: Consumer<Appointmentcontroller>(
           builder: (context, appointmentController, child) {
-            return ListView.builder(
-              itemCount: appointmentController.appointments.length,
-              itemBuilder: (context, index) {
-                final appointment = appointmentController.appointments[index];
-                return GestureDetector(
-                  onTap: () => showBottomSheet(context, appointment),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border:
-                              Border.all(color: colorconstant.primarygreen)),
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(appointment.image,
-                                width: 60, height: 70, fit: BoxFit.cover),
-                          ),
-                          SizedBox(width: 30),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(appointment.drname,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold)),
-                              Text(appointment.specialism),
-                              Text(
-                                '${appointment.date.day}-${appointment.date.month}-${appointment.date.year} ${appointment.time.format(context)}',
-                              ),
-                            ],
-                          ),
-                        ],
+            if (appointmentController.appointments.isEmpty) {
+              return Text("No Appointments");
+            } else {
+              return ListView.builder(
+                itemCount: appointmentController.appointments.length,
+                itemBuilder: (context, index) {
+                  final appointment = appointmentController.appointments[index];
+                  return GestureDetector(
+                    onTap: () => showBottomSheet(context, appointment),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            border:
+                                Border.all(color: colorconstant.primarygreen)),
+                        child: Row(
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.asset(appointment.image,
+                                  width: 60, height: 70, fit: BoxFit.cover),
+                            ),
+                            SizedBox(width: 30),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(appointment.drname,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold)),
+                                Text(appointment.specialism),
+                                Text(
+                                  '${appointment.date.day}-${appointment.date.month}-${appointment.date.year} ${appointment.time.format(context)}',
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
-            );
+                  );
+                },
+              );
+            }
           },
         ),
       ),

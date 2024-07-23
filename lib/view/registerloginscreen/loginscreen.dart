@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:telemedicine_app/controller/authcontroller.dart';
 import 'package:telemedicine_app/utils/colorconstant/colorconstant.dart';
 import 'package:telemedicine_app/view/bottomnavscreen/bottomnavscreen.dart';
+import 'package:telemedicine_app/view/registerloginscreen/registerscreen.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({super.key});
@@ -158,6 +161,26 @@ class _RegisterScreenState extends State<Loginscreen> {
                               ),
                             ),
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Dont have an account?"),
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              RegisterScreen(),
+                                        ));
+                                  },
+                                  child: Text(
+                                    "Register",
+                                    style: TextStyle(
+                                        color: colorconstant.primaryblue),
+                                  ))
+                            ],
+                          )
                         ],
                       ),
                     ),

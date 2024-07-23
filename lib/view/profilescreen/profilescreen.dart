@@ -1,8 +1,12 @@
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:telemedicine_app/controller/profilecontroller.dart';
 import 'package:telemedicine_app/database/db.dart';
 import 'package:telemedicine_app/utils/colorconstant/colorconstant.dart';
+import 'package:telemedicine_app/view/profilescreen/helpscreen.dart';
+import 'package:telemedicine_app/view/profilescreen/settings.dart';
 import 'package:telemedicine_app/view/registerloginscreen/registerscreen.dart';
 
 class Profilescreen extends StatelessWidget {
@@ -60,21 +64,32 @@ class Profilescreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: InkWell(
-                            onTap: () {
+                            onTap: () async {
                               switch (index) {
                                 case 0:
                                   print("Notificatios");
                                   break;
                                 case 1:
                                   print("Settings");
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SettingsScreen(),
+                                    ),
+                                  );
+
                                   break;
                                 case 2:
-                                  print("Help");
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HelpScreen(),
+                                    ),
+                                  );
+
                                   break;
                                 case 3:
-                                  Provider.of<Profilecontroller>(context,
-                                          listen: false)
-                                      .logoutbutton();
+                                  await FirebaseAuth.instance.signOut();
 
                                   Navigator.pushAndRemoveUntil(
                                       context,

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:telemedicine_app/controller/appointcontroller.dart';
 import 'package:telemedicine_app/controller/bottomnavcontroller.dart';
-import 'package:telemedicine_app/controller/profilecontroller.dart';
 import 'package:telemedicine_app/view/splashscreen/splashscreen.dart';
 
 Future<void> main() async {
@@ -33,9 +32,6 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => Appointmentcontroller(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => Profilecontroller(),
         ),
       ],
       child: MaterialApp(
