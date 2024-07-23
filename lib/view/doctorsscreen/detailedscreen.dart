@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:telemedicine_app/controller/appointcontroller.dart';
+import 'package:telemedicine_app/controller/bottomnavcontroller.dart';
 import 'package:telemedicine_app/model/appointmodel.dart';
 import 'package:telemedicine_app/utils/colorconstant/colorconstant.dart';
+import 'package:telemedicine_app/view/appointments/appointments.dart';
+import 'package:telemedicine_app/view/bottomnavscreen/bottomnavscreen.dart';
 
 class Detailedscreen extends StatefulWidget {
   const Detailedscreen({
@@ -247,9 +250,15 @@ class _DetailedscreenState extends State<Detailedscreen> {
                   Provider.of<Appointmentcontroller>(context, listen: false)
                       .addAppointment(newAppointment);
 
-                  print(
-                      Provider.of<Appointmentcontroller>(context, listen: false)
-                          .appointments);
+                  Provider.of<Bottomnavcontroller>(context, listen: false)
+                      .setIndex(1);
+
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Bottomnavscreen(),
+                      ),
+                      (route) => false);
                 },
                 child: Text("Make An Appointment"),
                 style: ButtonStyle(

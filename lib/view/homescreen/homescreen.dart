@@ -25,7 +25,7 @@ class _HomescreenState extends State<Homescreen> {
         children: [
           Expanded(
             child: GridView.builder(
-              itemCount: Specialists.specialists.length,
+              itemCount: Database.specialists.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
               ),
@@ -35,7 +35,7 @@ class _HomescreenState extends State<Homescreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => Doctorsscreen(
-                        specialist: Specialists.specialists[index],
+                        specialist: Database.specialists[index],
                       ),
                     ),
                   );
@@ -57,8 +57,8 @@ class _HomescreenState extends State<Homescreen> {
                           width: 50,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(
-                                  Specialists.specialistsimages[index]),
+                              image:
+                                  AssetImage(Database.specialistsimages[index]),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -66,7 +66,7 @@ class _HomescreenState extends State<Homescreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        Text(Specialists.specialists[index])
+                        Text(Database.specialists[index])
                       ],
                     ),
                   ),

@@ -65,18 +65,44 @@ class Appointments extends StatelessWidget {
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 20),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text("Confirm Appointment"),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(colorconstant.primarygreen),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                            colorconstant.primarygreen)),
+                    onPressed: () {},
+                    child: Text(
+                      "Messsage",
+                      style: TextStyle(color: colorconstant.primarywhite),
+                    ),
                   ),
-                ),
-              ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                            colorconstant.primarygreen)),
+                    onPressed: () {},
+                    child: Text(
+                      "Video call",
+                      style: TextStyle(color: colorconstant.primarywhite),
+                    ),
+                  )
+                ],
+              )
+              // Center(
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       Navigator.pop(context);
+              //     },
+              //     child: Text("Confirm Appointment"),
+              //     style: ButtonStyle(
+              //       backgroundColor:
+              //           MaterialStateProperty.all(colorconstant.primarygreen),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         );
@@ -87,52 +113,6 @@ class Appointments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: colorconstant.primarygreen,
-              ),
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                  color: colorconstant.primarywhite,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Settings'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Logout'),
-              onTap: () async {
-                await FirebaseAuth.instance.signOut();
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RegisterScreen(),
-                  ),
-                  (route) => false,
-                );
-              },
-            ),
-          ],
-        ),
-      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           await FirebaseAuth.instance.signOut();
@@ -149,7 +129,7 @@ class Appointments extends StatelessWidget {
       ),
       appBar: AppBar(
         title: Text(
-          'Profile',
+          'Appointments',
           style: TextStyle(color: colorconstant.primarywhite),
         ),
         backgroundColor: colorconstant.primarygreen,

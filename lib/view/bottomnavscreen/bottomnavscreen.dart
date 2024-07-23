@@ -26,6 +26,10 @@ class _userbottomnavscreenState extends State<Bottomnavscreen> {
                 label: 'Home',
               ),
               BottomNavigationBarItem(
+                icon: Icon(Icons.library_books),
+                label: 'Appointments',
+              ),
+              BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: 'Profile',
               ),

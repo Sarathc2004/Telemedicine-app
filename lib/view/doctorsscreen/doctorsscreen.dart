@@ -49,7 +49,7 @@ class Doctorsscreen extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: Specialists.doctorsname.length,
+                itemCount: Database.doctorsname.length,
                 itemBuilder: (context, index) {
                   return Card(
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
@@ -78,7 +78,7 @@ class Doctorsscreen extends StatelessWidget {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.asset(
-                                      Specialists.doctorimages[index],
+                                      Database.doctorimages[index],
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -90,7 +90,7 @@ class Doctorsscreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      Specialists.doctorsname[index],
+                                      Database.doctorsname[index],
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 17),
@@ -105,7 +105,7 @@ class Doctorsscreen extends StatelessWidget {
                                     ),
                                     SizedBox(height: 10),
                                     Text(
-                                      Specialists.hospitals[index],
+                                      Database.hospitals[index],
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                       overflow: TextOverflow.ellipsis,
@@ -147,9 +147,9 @@ class Doctorsscreen extends StatelessWidget {
                                     MaterialPageRoute(
                                       builder: (context) => Detailedscreen(
                                         index: index + 1,
-                                        drname: Specialists.doctorsname[index],
+                                        drname: Database.doctorsname[index],
                                         specialism: "MBBS In $specialist",
-                                        image: Specialists.doctorimages[index],
+                                        image: Database.doctorimages[index],
                                       ),
                                     ),
                                   );

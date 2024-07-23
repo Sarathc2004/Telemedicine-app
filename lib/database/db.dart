@@ -1,4 +1,6 @@
-class Specialists {
+import 'package:flutter/material.dart';
+
+class Database {
   static List specialists = [
     "Family physicians",
     "Allergists",
@@ -62,5 +64,12 @@ class Specialists {
     "assets/images/d3.jpg",
     "assets/images/d4.jpg",
     "assets/images/d5.jpg"
+  ];
+
+  static List<Map> profilelist = [
+    {"buttonname": "Notifications", "icon": Icons.notifications},
+    {"buttonname": "Settings", "icon": Icons.settings},
+    {"buttonname": "Help", "icon": Icons.help_outline},
+    {"buttonname": "Logout", "icon": Icons.logout},
   ];
 }

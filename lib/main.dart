@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:telemedicine_app/controller/appointcontroller.dart';
 import 'package:telemedicine_app/controller/bottomnavcontroller.dart';
-import 'package:telemedicine_app/model/appointmodel.dart';
+import 'package:telemedicine_app/controller/profilecontroller.dart';
 import 'package:telemedicine_app/view/splashscreen/splashscreen.dart';
 
 Future<void> main() async {
@@ -14,8 +14,7 @@ Future<void> main() async {
       options: const FirebaseOptions(
           apiKey: "AIzaSyCw3l3SnoTcmWMv9f0t1CqlqoRN69Jonxc",
           appId: "1:227850607696:android:90a45639907e2d66e14555",
-          messagingSenderId:
-              "YOUR_MESSAGING_SENDER_ID", // Add your messaging sender ID here
+          messagingSenderId: "",
           projectId: "telemedicine-app-e2734",
           storageBucket: "telemedicine-app-e2734.appspot.com"));
 
@@ -34,6 +33,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => Appointmentcontroller(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Profilecontroller(),
         ),
       ],
       child: MaterialApp(
